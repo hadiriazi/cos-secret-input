@@ -53,10 +53,11 @@
     var form = $('f'), input = $('v'), btn = $('b'), msg = $('m');
     $('label').textContent = label || name;
     $('name').textContent = name;
-    function fail(t) { msg.textContent = t; btn.disabled = true; input.disabled = true; }
+    function diag() { return ' [p=' + (tg && tg.platform) + ' v=' + (tg && tg.version) + ' sd=' + (tg && typeof tg.sendData) + ' n=' + name.length + ' c=' + nonce.length + ']'; }
+    function fail(t) { msg.textContent = t + diag(); btn.disabled = true; }
     if (tg) { tg.ready(); tg.expand(); }
     if (!NAME_RE.test(name) || !NONCE_RE.test(nonce)) return fail('Invalid request link. Ask CoS for a new one.');
-    if (!tg || typeof tg.sendData !== 'function' || !tg.platform || tg.platform === 'unknown') return fail('Open this page from the Telegram button.');
+    if (!tg || typeof tg.sendData !== 'function') return fail('Open this page from the Telegram button.');
     form.addEventListener('submit', async function (ev) {
       ev.preventDefault();
       var value = input.value;
@@ -76,6 +77,7 @@
         msg.textContent = 'Encryption failed on this device.';
       }
     });
+    msg.textContent = 'Ready.' + diag();
     input.focus();
   }
 
