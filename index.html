@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://telegram.org; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secure input</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 20px;
+         background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #111); }
+  h1 { font-size: 17px; margin: 0 0 4px; word-break: break-word; }
+  .n { font: 12px ui-monospace, monospace; opacity: .6; margin-bottom: 16px; word-break: break-all; }
+  input { width: 100%; box-sizing: border-box; font-size: 17px; padding: 12px; border-radius: 10px;
+          border: 1px solid var(--tg-theme-hint-color, #999); background: var(--tg-theme-secondary-bg-color, #f4f4f4);
+          color: inherit; }
+  button { margin-top: 14px; width: 100%; padding: 13px; font-size: 16px; border: 0; border-radius: 10px;
+           background: var(--tg-theme-button-color, #2481cc); color: var(--tg-theme-button-text-color, #fff); }
+  button:disabled { opacity: .5; }
+  .m { margin-top: 12px; font-size: 14px; min-height: 1.2em; color: var(--tg-theme-hint-color, #666); }
+  .f { margin-top: 18px; font-size: 12px; color: var(--tg-theme-hint-color, #888); }
+</style>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="app.js"></script>
+</head>
+<body>
+<h1 id="label"></h1>
+<div class="n" id="name"></div>
+<form id="f" autocomplete="off">
+  <input id="v" type="password" autocomplete="new-password" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Secret value">
+  <button id="b" type="submit">Encrypt &amp; send</button>
+</form>
+<div class="m" id="m"></div>
+<div class="f">Encrypted on this device with the host's public key before sending. Only ciphertext goes to Telegram.</div>
+</body>
+</html>
